@@ -22,6 +22,9 @@ sudo apt-get install -y \
     libglib2.0-dev \
     libpixman-1-dev \
     ninja-build \
+    automake \
+    autoconf \
+    python3-pyelftools \
     psmisc
 
 # Download and install OpenSSL 1.1.1f
@@ -53,6 +56,10 @@ make
 # Install QEMU support for AFLplusplus
 cd qemu_mode
 ./build_qemu_support.sh
+cd ..
+
+cd unicorn_mode
+./build_unicorn_support.sh
 cd ..
 
 # Install AFLplusplus system-wide
