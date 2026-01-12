@@ -36,6 +36,8 @@ RUN wget https://www.openssl.org/source/old/1.1.1/openssl-1.1.1f.tar.gz \
     && rm openssl-1.1.1f.tar.gz
 WORKDIR /usr/src/openssl-1.1.1f/
 RUN ./config && make && make install
+# Configure library path for OpenSSL 1.1.1f
+RUN echo '/usr/local/lib' > /etc/ld.so.conf.d/openssl.conf && ldconfig
 RUN rm -rf /usr/src/openssl-1.1.1f
 
 WORKDIR /usr/src/afl

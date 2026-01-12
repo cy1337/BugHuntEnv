@@ -1,0 +1,27 @@
+services:
+  bughunt-env:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    platform: linux/amd64
+    container_name: bughunt-environment
+    ports:
+      - "8080:8080"
+    volumes:
+      # Mount the current directory to /home/user/workspace for easy access to files
+      - .:/home/user/workspace
+      # Create a persistent volume for any work done in the container
+      - bughunt-data:/home/user/data
+      # Mount a directory for sample binaries and firmware
+      - ./samples:/home/user/samples
+    working_dir: /home/user/workspace
+    stdin_open: true
+    tty: true
+    environment:
+      - TERM=xterm-256color
+    command: bash
+    restart: unless-stopped
+
+volumes:
+  bughunt-data:
+    driver: local 

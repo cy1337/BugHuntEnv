@@ -1,3 +1,6 @@
+# Disclaimer
+This repo has been built and only tested on _my_ M1 Max for this class. USE AT YOUR OWN RISK.
+
 # A Basic Guide to Bug Hunting with Ghidra
 
 This repo contains details on the environment needed to run some of the classroom examples.
@@ -17,7 +20,19 @@ cd BugHuntEnv
 ```
 
 ## macOS
-A Docker container has been published to Dockerhub `cy1337demos/bughuntenv` or can be built with the Dockerfile in this repo. If using Apple Silicon, you will need a fully emulated VM (e.g. from UTM) to participate in debugging lessons.
+A Docker container has been published to Dockerhub `cy1337demos/bughuntenv` or can be built with the Dockerfile in this repo. 
+
+**Easy Option**: Use Docker Compose (recommended):
+```bash
+git clone https://github.com/cy1337/BugHuntEnv.git
+cd BugHuntEnv
+docker-compose up -d
+docker-compose exec bughunt-env bash
+```
+
+See [DOCKER_USAGE.md](DOCKER_USAGE.md) for detailed Docker instructions.
+
+**✅ Apple Silicon (M1/M2) Supported**: The Docker Compose setup now works on Apple Silicon Macs with proper x86_64 emulation and library configuration.
 
 ## Linux
 The `setup.sh` in this repo can be used to install the appropriate tools and libraries on an existing Ubuntu Linux system. Feel free to configure a different distro as long as you can ultimately run `CommandServer` from this repo.
